@@ -326,7 +326,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>N32L40X, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\..\..\firmware\CMSIS\core;..\..\..\firmware\CMSIS\device;..\..\..\firmware\n32l40x_std_periph_driver\inc</IncludePath>
+              <IncludePath>..\inc;..\..\..\firmware\CMSIS\core;..\..\..\firmware\CMSIS\device;..\..\..\firmware\n32l40x_std_periph_driver\inc;..\src\com\easylogger\inc;..\src\int;..\src\com\easylogger\plugins\file;..\src\com\easylogger\plugins\flash;..\src\dri;..\src\com</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -403,18 +403,6 @@
         </Group>
         <Group>
           <GroupName>FWLB</GroupName>
-          <Files>
-            <File>
-              <FileName>n32l40x_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32l40x_rcc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_rcc.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>USER</GroupName>
@@ -438,6 +426,201 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>..\readme.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>src\com\log</GroupName>
+          <Files>
+            <File>
+              <FileName>elog_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\plugins\file\elog_file.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_file_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\plugins\file\elog_file_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\port\elog_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\src\elog.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_async.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\src\elog_async.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_buf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\src\elog_buf.c</FilePath>
+            </File>
+            <File>
+              <FileName>elog_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\com\easylogger\src\elog_utils.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>src\int\int_LED</GroupName>
+          <Files>
+            <File>
+              <FileName>int_LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\int\int_LED.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>dri</GroupName>
+          <Files>
+            <File>
+              <FileName>dri_ClockConfig.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\dri\dri_ClockConfig.c</FilePath>
+            </File>
+            <File>
+              <FileName>dri_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\dri\dri_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>dri_Systick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\dri\dri_Systick.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>firmware</GroupName>
+          <Files>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_comp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_comp.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_dbg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_dbg.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_lptim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_lptim.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_lpuart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_lpuart.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_opamp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_opamp.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32l40x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\firmware\n32l40x_std_periph_driver\src\n32l40x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>

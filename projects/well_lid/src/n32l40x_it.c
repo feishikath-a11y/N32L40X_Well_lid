@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2026-01-30 11:30:07
+ * @LastEditors: Please set LastEditors
+ * @LastEditorTime: 
+ */
 /*****************************************************************************
  * Copyright (c) 2022, Nations Technologies Inc.
  *
@@ -35,6 +43,13 @@
 #include "n32l40x_it.h"
 #include "n32l40x.h"
 #include "main.h"
+#include "dri_config.h"
+
+uint32_t uwTick;    // 全局滴答时钟变量
+
+
+// 函数声明
+uint32_t get_tick(void);
 
 /** @addtogroup N32L40X_StdPeriph_Template
  * @{
@@ -116,6 +131,7 @@ void DebugMon_Handler(void)
  */
 void SysTick_Handler(void)
 {
+    uwTick++;
 }
 
 /**
@@ -142,3 +158,29 @@ void DMA_IRQ_HANDLER(void)
 /**
  * @}
  */
+
+
+uint32_t get_tick(void)
+{
+    return uwTick;
+}
+
+
+void delay_ms(uint32_t ms)
+{
+    uint32_t tickstart = uwTick;
+    uint32_t wait = ms;
+
+    if (wait < UINT32_MAX)
+    {
+        wait +=  (uint32_t)(uwTickFrequency);
+    }
+
+   
+    while (uwTick - tickstart < wait)
+    {
+    }
+    
+    
+}
+

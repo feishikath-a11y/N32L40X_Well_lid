@@ -68,3 +68,6 @@ void DMA1_Channel6_IRQHandler(void);
 /**
  * @}
  */
+
+
+ void delay_ms(uint32_t ms);

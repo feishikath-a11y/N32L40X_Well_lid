@@ -7,32 +7,20 @@ extern "C" {
 
 #include "n32l40x.h"
 
-/**
- * @def LED_PORT
- * @brief ¶¨Òå LED ËùÁ¬½ÓµÄ GPIO ¶Ë¿Ú£¬´Ë´¦Îª GPIOA¡£
- */
-#define LED_PORT GPIOA
 
 /**
- * @def LED_PIN
- * @brief ¶¨Òå LED ËùÁ¬½ÓµÄ GPIO Òý½Å£¬´Ë´¦Îª GPIO_PIN_10¡£
- */
-#define LED_PIN GPIO_PIN_9
-
-
-/**
- * @brief  ³õÊ¼»¯LED
- * @note   ÅäÖÃLED¶ÔÓ¦µÄGPIOÒý½ÅÎªÊä³öÄ£Ê½
+ * @brief  ï¿½ï¿½Ê¼ï¿½ï¿½LED
+ * @note   ï¿½ï¿½ï¿½ï¿½LEDï¿½ï¿½Ó¦ï¿½ï¿½GPIOï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ä£Ê½
  */
 void Har_LED_Init(void);
 
 /**
- * @brief  ´ò¿ªLED
+ * @brief  ï¿½ï¿½LED
  */
 void Har_LED_On(void);
 
 /**
- * @brief  ¹Ø±ÕLED
+ * @brief  ï¿½Ø±ï¿½LED
  */
 void Har_LED_Off(void);
 #ifdef __cplusplus

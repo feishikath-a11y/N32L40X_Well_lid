@@ -12,11 +12,11 @@
 #include "n32l40x.h"
 #include "elog.h"
 
-//!ºê¶¨Òå
+//!å®å®šä¹‰
 #define CAT "DRI_USART"
 
 
-//!±äÁ¿¶¨Òå
+//!å˜é‡å®šä¹‰
 
 /** @addtogroup N32L40x_StdPeriph_Examples
  * @{
@@ -29,19 +29,19 @@
 LPUART_InitType LPUART_InitStructure;
 
 
-//! º¯ÊıÉùÃ÷
+//! å‡½æ•°å£°æ˜
 ErrorStatus RCC_Configuration(uint32_t LPUART_CLK_SRC);
 void GPIO_Configuration(void);
 
 
 
-//!º¯Êı¶¨Òå
+//!å‡½æ•°å®šä¹‰
 SystemError_t dri_usart_init(void)
 {
 
 
     /* System Clocks Configuration */
-    if(RCC_Configuration(RCC_LPUARTCLK_SRC_APB1)  == SUCCESS) //°üº¬enable LPUARTÊ±ÖÓ
+    if(RCC_Configuration(RCC_LPUARTCLK_SRC_APB1)  == SUCCESS) //åŒ…å«enable LPUARTæ—¶é’Ÿ
     {
         /* System Clocks Configuration Success */
         //elog_info(CAT,"RCC_Configuration SUCCESS");
@@ -54,9 +54,9 @@ SystemError_t dri_usart_init(void)
     }
 
     /* Enable GPIO clock */
-    RCC_EnableAPB2PeriphClk(LPUART_GPIO_CLK, ENABLE); //Ê¹ÄÜGPIOAÊ±ÖÓ
+    RCC_EnableAPB2PeriphClk(LPUART_GPIO_CLK, ENABLE); //ä½¿èƒ½GPIOAæ—¶é’Ÿ
 
-    RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_AFIO, ENABLE); //Ê¹ÄÜAFIOÊ±ÖÓ
+    RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_AFIO, ENABLE); //ä½¿èƒ½AFIOæ—¶é’Ÿ
 
 
     /* Configure the GPIO ports */
@@ -173,11 +173,11 @@ void GPIO_Configuration(void)
     GPIO_InitPeripheral(LPUART_GPIO, &GPIO_InitStructure);
 
     /* Configure LPAURT Rx as alternate function push-pull and pull-up */
-    // GPIO_InitStructure.Pin            = LPUART_RxPin;
-    // GPIO_InitStructure.GPIO_Pull      = GPIO_Pull_Up;
-    // GPIO_InitStructure.GPIO_Mode      = GPIO_Mode_AF_PP;    
-    // GPIO_InitStructure.GPIO_Alternate = LPUART_Rx_GPIO_AF;
-    // GPIO_InitPeripheral(LPUART_GPIO, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin            = LPUART_RxPin;
+    GPIO_InitStructure.GPIO_Pull      = GPIO_Pull_Up;
+    GPIO_InitStructure.GPIO_Mode      = GPIO_Mode_AF_PP;    
+    GPIO_InitStructure.GPIO_Alternate = LPUART_Rx_GPIO_AF;
+    GPIO_InitPeripheral(LPUART_GPIO, &GPIO_InitStructure);
 }
 
 

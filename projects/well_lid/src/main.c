@@ -1,10 +1,10 @@
 /*
- * @Description: 
- * @Version: 
- * @Author: 
+ * @Description:
+ * @Version:
+ * @Author:
  * @Date: 2026-01-30 11:30:07
  * @LastEditors: Please set LastEditors
- * @LastEditorTime: 
+ * @LastEditorTime:
  */
 #include "main.h"
 #include <stdio.h>
@@ -17,75 +17,35 @@
 #include "dri_usart.h"
 #include "n32l40x_it.h"
 
-
-
-/**
- * @brief  ³õÊ¼»¯LED
- * @note   ÅäÖÃLED¶ÔÓ¦µÄGPIOÒı½ÅÎªÊä³öÄ£Ê½
- */
-void Har_LED_Init(void)
-{
-    // ¶¨Òå GPIO ³õÊ¼»¯½á¹¹Ìå£¬ÓÃÓÚ´æ´¢ GPIO Òı½ÅµÄÅäÖÃĞÅÏ¢
-    GPIO_InitType GPIO_InitStructure;
-
-    // Ê¹ÄÜ GPIOA ¶Ë¿ÚµÄÊ±ÖÓ£¬ÒòÎª LED Á¬½ÓÔÚ¸Ã¶Ë¿Ú
-    RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOA, ENABLE);
-
-    // ³õÊ¼»¯ GPIO ³õÊ¼»¯½á¹¹Ìå£¬½«Æä³ÉÔ±±äÁ¿ÉèÖÃÎªÄ¬ÈÏÖµ
-    GPIO_InitStruct(&GPIO_InitStructure);
-    // ÉèÖÃÒª³õÊ¼»¯µÄ GPIO Òı½Å£¬LED_PIN Îª LED ¶ÔÓ¦µÄÒı½Åºê¶¨Òå
-    GPIO_InitStructure.Pin = LED_PIN;
-    // ÉèÖÃ GPIO Òı½ÅµÄÇı¶¯µçÁ÷Îª 2mA
-    GPIO_InitStructure.GPIO_Current = GPIO_DC_2mA;
-    // ÉèÖÃ GPIO Òı½ÅµÄÑ¹°ÚÂÊÎªµÍ£¬¼´ĞÅºÅÉÏÉı/ÏÂ½µÊ±¼ä½Ï³¤
-    GPIO_InitStructure.GPIO_Slew_Rate = GPIO_Slew_Rate_Low;
-    // ÉèÖÃ GPIO Òı½ÅÎªÏÂÀ­Ä£Ê½£¬¼´Ä¬ÈÏµçÆ½ÎªµÍµçÆ½
-    GPIO_InitStructure.GPIO_Pull = GPIO_Pull_Down;
-    // ÉèÖÃ GPIO Òı½ÅÎªÍÆÍìÊä³öÄ£Ê½£¬¿ÉÊä³ö¸ß¡¢µÍµçÆ½
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    // ¸ù¾İÉÏÊöÅäÖÃĞÅÏ¢³õÊ¼»¯Ö¸¶¨µÄ GPIO ¶Ë¿Ú£¨LED_PORT Îª LED ¶ÔÓ¦µÄ¶Ë¿Úºê¶¨Òå£©
-    GPIO_InitPeripheral(LED_PORT, &GPIO_InitStructure);
-}
-
-void Har_LED_On(void)
-{
-    GPIO_ResetBits(LED_PORT, LED_PIN);
-}
-
-void Har_LED_Off(void)
-{
-    GPIO_SetBits(LED_PORT, LED_PIN);
-}
+#define CAT "MAIN"
 
 int main(void)
 {
     //elog_init();
-    
-    //³õÊ¼»¯SysTick
-    //dri_systick_1ms_IRQ_init();
+    // æ³¨å†Œè®¡æ—¶å™¨
+    systick_register_get_tick_callback(get_tick);
 
-    //³õÊ¼»¯Ê±ÖÓÅäÖÃ
+    // åˆå§‹åŒ–SysTick
+    dri_systick_1ms_IRQ_init();
+
+    // åˆå§‹åŒ–æ—¶é’Ÿé…ç½®
     //dri_ClockConfig_Init();
 
-    //³õÊ¼»¯´®¿Ú
+    // åˆå§‹åŒ–ä¸²å£
     dri_usart_init();
 
+    printf("register\n");
 
-   
-    
+
+    // elog_info(CAT, "hello world!");
 
     while (1)
     {
-        printf("²âÊÔ\n");
-        delay_ms(3000);
-        
+        printf("test\n");
+        dri_systick_delay_ms(3000);
     }
-    
 
-
-    //elog_deinit();
-
-    //!LED_Init
+    //! LED_Init
 
     // Har_LED_Init();
     // while (1)

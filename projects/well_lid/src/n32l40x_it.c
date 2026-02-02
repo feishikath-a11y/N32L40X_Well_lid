@@ -40,16 +40,18 @@
  *
  * @copyright Copyright (c) 2022, Nations Technologies Inc. All rights reserved.
  */
+#include <stdio.h>
 #include "n32l40x_it.h"
 #include "n32l40x.h"
 #include "main.h"
 #include "dri_config.h"
+#include "dri_Systick.h"
 
-uint32_t uwTick;    // È«¾ÖµÎ´ğÊ±ÖÓ±äÁ¿
+//! å¤–éƒ¨å‡½æ•°è‡ªå®šä¹‰å˜é‡
+uint32_t uwTick;    // å…¨å±€æ»´ç­”è®¡æ—¶å˜é‡
 
 
-// º¯ÊıÉùÃ÷
-uint32_t get_tick(void);
+
 
 /** @addtogroup N32L40X_StdPeriph_Template
  * @{
@@ -134,6 +136,8 @@ void SysTick_Handler(void)
     uwTick++;
 }
 
+
+
 /**
  * @brief  This function handles DMA interrupt request defined in main.h .
  */
@@ -160,27 +164,17 @@ void DMA_IRQ_HANDLER(void)
  */
 
 
-uint32_t get_tick(void)
+ 
+uint32_t get_tick(void)  
 {
     return uwTick;
 }
 
 
-void delay_ms(uint32_t ms)
-{
-    uint32_t tickstart = uwTick;
-    uint32_t wait = ms;
 
-    if (wait < UINT32_MAX)
-    {
-        wait +=  (uint32_t)(uwTickFrequency);
-    }
 
-   
-    while (uwTick - tickstart < wait)
-    {
-    }
-    
-    
-}
+
+
+
+
 

@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 
+ * @Author: 
+ * @Date: 2026-01-30 11:30:07
+ * @LastEditors: Please set LastEditors
+ * @LastEditorTime: 
+ */
 /*****************************************************************************
  * Copyright (c) 2022, Nations Technologies Inc.
  *
@@ -40,6 +48,7 @@ extern "C" {
 #endif
 
 #include "n32l40x.h"
+#include <stdint.h>
 
 void NMI_Handler(void);
 void HardFault_Handler(void);
@@ -70,4 +79,4 @@ void DMA1_Channel6_IRQHandler(void);
  */
 
 
- void delay_ms(uint32_t ms);
+uint32_t get_tick(void);

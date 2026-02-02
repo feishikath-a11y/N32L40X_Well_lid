@@ -30,45 +30,72 @@ ErrorStatus SetSysClockToPLL(uint32_t freq, uint8_t src);
 
 // void NVIC_Configuration(void);
 
+/**
+ * @brief 时钟配置初始化函数
+ * @note 此函数按顺序配置系统时钟源，从低频率逐步切换到高频率
+ *       包括：复位状态 → MSI(4MHz) → HSE(8MHz) → PLL(64MHz)
+ * @retval 无
+ */
 void dri_ClockConfig_Init(void)
 {
-    // ��RCCʱ����������ΪĬ�ϸ�λ״̬
-    dri_ClockConfig_DumpClock("After reset");
+    // 初始状态：显示复位后的时钟配置
+    // ------------------------------------------------------------
+    dri_ClockConfig_DumpClock("status after reset");
 
-    // ʱ������ MSI
+    // 第一步：配置系统时钟为内部MSI（4MHz）
+    // ------------------------------------------------------------
     if (SetSysClockToMSI() == ERROR)
     {
-        elog_info(CAT,"Clock configuration failure!\n");
+        elog_error(CAT, "MSI clock configuration failed!");
+        // 可以考虑添加错误恢复机制，如系统复位
+    }
+    else
+    {
+        elog_info(CAT, "MSI clock configuration succeeded");
     }
     dri_ClockConfig_DumpClock("MSI, 4MHz");
 
-    // ʱ������ HSI
+    // 第二步：切换到外部高速时钟HSE（8MHz）
+    // ------------------------------------------------------------
     if (SetSysClockToHSE() == ERROR)
     {
-        elog_info(CAT,"Clock configuration failure!\n");
+        elog_error(CAT, "HSE clock configuration failed!");
+        // 注意：HSE失败时通常保持MSI时钟继续运行
+    }
+    else
+    {
+        elog_info(CAT, "HSE clock configuration succeeded");
     }
     dri_ClockConfig_DumpClock("HSE, 8MHz");
 
-    // ʱ������ PLL
+    // 第三步：通过PLL倍频到64MHz
+    // ------------------------------------------------------------
     if (SetSysClockToPLL(64000000, SYSCLK_PLLSRC_HSE) == ERROR)
     {
-        elog_info(CAT,"Clock configuration failure!\n");
+        elog_error(CAT, "PLL clock configuration failed!");
+        // PLL配置失败时回退到HSE时钟
     }
-    dri_ClockConfig_DumpClock("HSE->PLL, 64M");
+    else
+    {
+        elog_info(CAT, "PLL clock configuration succeeded, system frequency: 64MHz");
+    }
+    dri_ClockConfig_DumpClock("HSE->PLL, 64MHz");
 
-    // ����ʱ�Ӱ�ȫϵͳ(CSS)����HSEʱ��ʧЧʱ�����NMI�쳣
+    // 第四步：启用时钟安全系统(CSS)
+    // ------------------------------------------------------------
+    // 当时钟安全系统启用后，如果HSE时钟失效，系统会自动切换到备用时钟源
+    // 并触发NMI异常，防止系统因时钟失效而崩溃
     RCC_EnableClockSecuritySystem(ENABLE);
+    elog_info(CAT, "Clock Security System enabled");
 
-    //     /* NVIC����
-    //  * ------------------------------------------------------*/
-    // NVIC_Configuration();
-
-    //     /* ��MCO�������HSEʱ��
-    //  * ---------------------------------------------*/
-    // // ����GPIOAʱ��
+    // 第五步：配置中断控制器（注释状态，根据需要启用）
+    // ------------------------------------------------------------
+    // NVIC_Configuration();  // 中断优先级分组配置
+    
+    // 第六步：配置MCO引脚输出时钟信号（注释状态，用于调试）
+    // ------------------------------------------------------------
     // RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOA, ENABLE);
-
-
+    // 配置PA8为MCO输出HSE时钟，可用于示波器观察
 }
 
 void dri_ClockConfig_DumpClock(const char *msg)
